@@ -57,13 +57,9 @@
         const numberkey_click = () => {
             for (let i = 0; i < 10; i++) {
                 number[i] = document.getElementById(`number-${i}`)
-
                 number[i].addEventListener("click", () => {
                     myinput += number[i].textContent
                     result.value = myinput
-                    console.log(myinput)
-                    console.log(mytotal)
-                    console.log(mycalc)
                 });
             };
         };
@@ -81,9 +77,6 @@
                         mytotal = myinput + mycalc
                         myinput = ""
                         calccunt += 1
-                        console.log(myinput)
-                        console.log(mytotal)
-                        console.log(mycalc)
                     } else {
                         mytotal += myinput
                         mytotal = eval(mytotal)
@@ -92,9 +85,6 @@
                         mytotal += mycalc
                         myinput = ""
                         calccunt += 1
-                        console.log(myinput)
-                        console.log(mytotal)
-                        console.log(mycalc)
                     };
                 });
             };
@@ -107,14 +97,10 @@
             equal.addEventListener("click", () => {
                 mytotal += myinput
                 result.value = eval(mytotal)
-                console.log(eval(mytotal))
                 myinput = "";
                 mytotal = 0;
                 mycalc = "-";
                 calccunt = 0;
-                console.log(myinput)
-                console.log(mytotal)
-                console.log(mycalc)
             });
         };
         equal_click();
@@ -136,9 +122,6 @@
                 if (myinput !== "") {
                     myinput += point.value;
                     result.value = myinput
-                    console.log(myinput)
-                    console.log(mytotal)
-                    console.log(mycalc)
                 };
             });
         };
