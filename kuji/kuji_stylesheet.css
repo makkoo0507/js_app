@@ -1,0 +1,13 @@
+#image{
+    width:200px;
+}
+#result{
+    font-size: 30px;
+    color: red;
+}
+.ichito-wrapper{
+    display: flex;
+    font-size: 20px;
+}
+#ichimessage{
+    width:200px;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calender</title>
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <style>
+        /* マップを表示する div 要素の高さを必ず明示的に指定します。 */
+        #map {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h1>カレンダー</h1>
+        <div id="calendar"></div>
+        <h2 id="year-month"><select id="year-input"></select>年<select id="month-input"></select> 月 </h2>
+    </div>
+    <div id="calender-wrapper">
+        <table id="calender-table">
+            <tr class="day">
+                <td>日</td>
+                <td>月</td>
+                <td>火</td>
+                <td>水</td>
+                <td>木</td>
+                <td>金</td>
+                <td>土</td>
+            </tr>
+        </table>
+    </div>
+    <!-- <div class="timer" style="margin-top: 50px;">
+        <h3>壱門生まれて何ヶ月？</h3>
+        <label id="year"></label>歳
+        <label id="month"></label>ヶ月
+    </div> -->
+    <script src="calender-js.js"></script>
+</body>
+
+</html>

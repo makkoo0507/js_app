@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>BlockBreak</title>
+      <link rel="stylesheet" href="blockbreak-stylesheet.css">
+      <link rel="stylesheet" href="_responsive.css">
+      <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    </head>
+    <body>        
+        <div>
+            <h1>ブロック崩しゲーム</h1>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+        </div>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        
+        // 衝突判定関数
+        const clash = (obj1,obj2)=>{
+            return obj1.x<obj2.x+obj2.width &&
+                   obj2.x<obj1.x+obj1.width &&
+                   obj1.y<obj2.y+obj2.width &&
+                   obj2.y<obj1.y+obj1.width
+        }
+        // パドル
+        const paddle={
+            x:null,
+            y:null,
+            dx:null,
+            dy:null,
+            width:50,
+            height:2,
+            update:()=>{context.fillRect(paddle.x,paddle.y,paddle.width,paddle.height)
+            }
+        };
+        // ボール
+        const ball={
+            x:null,
+            y:null,
+            dx:null,
+            dy:null,
+            width:2,
+            height:1,
+            update:()=>{
+                // ボールを動かす
+                context.fillRect(ball.x,ball.y,ball.width,ball.height);
+                ball.x+=ball.dx ;
+                ball.y+=ball.dy;
+                // 壁に当たったとき
+                if(ball.x<0||ball.x>canvas.width){
+                    ball.dx*=-1
+                };
+                if(ball.y<0||ball.y>canvas.height){
+                    // ball.y=canvas.height;
+                    ball.dy*=-1
+                };
+                // ブロックに当たったとき
+                for(let i=0;i<level.length;i++){
+                    for(let j=0;j<level[i].length;j++){
+                        if(level[i][j]===1){
+                            if(block.width*j<ball.x & ball.x<block.width*j+block.width & block.height*i<ball.y & ball.y<block.height*i+block.height){
+                                ball.dy*=-1;
+                                level[i][j]=0;
+                            };
+                        };
+                    }
+                };
+                // パドルに当たったとき
+                if(clash(ball,paddle)){
+                    ball.dy*=-1 ;
+                }
+            }
+        };
+        // ブロック
+        const level=[
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,1],
+            [1,1,0,1,1,1,1,1,1,1],
+            [1,1,1,0,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1],
+            [1,0,1,1,1,1,1,1,1,1],
+            [1,1,0,1,1,1,1,1,1,1],
+            [1,1,1,0,1,1,1,1,1,1]
+        ]
+        
+        const block ={
+            width:canvas.width/level[0].length,
+            height:canvas.height/level.length/2,
+            creat:()=>{
+                for(let i=0;i<level.length;i++){
+                    for(let j=0;j<level[i].length;j++){
+                        context.fillRect(
+                        block.width*j,
+                        block.height*i,
+                        block.width*level[i][j],
+                        block.height*level[i][j],
+                        )
+                        context.fill();
+                    }
+                };
+            }
+        }
+
+        // 初期値
+        const init=()=>{
+            paddle.x=canvas.width/2-paddle.width/2;
+            paddle.y=canvas.height-paddle.height;
+            paddle.dx=6;
+            paddle.dy=6;
+            ball.x=canvas.width;
+            ball.y=canvas.height/2;
+            ball.dx=2;
+            ball.dy=1;
+        };
+        init();
+        // クリア判定
+        let check=1
+        const checkfun=()=>{
+            check=0
+            for(let t=0;t<level.length;t++){
+                for(let u=0;u<level[t].length;u++){
+                    check+=level[t][u]
+                };
+            };
+            if(check===0){
+                window.alert("おめでとう！頑張りました！アイス食べていいよ🤍")}
+        };
+        // 失敗判定
+        // ライフ
+        let life=5;
+        const gameover=()=>{
+            if(ball.y>canvas.height){
+                life-=1
+                if(life!==0){
+                    window.alert(`残りライフは${life}です`)
+                }else{
+                    window.alert(`ゲームオーバー`)
+                };
+        };
+        };
+        
+        // ループ処理
+        const loop = ()=>{
+            checkfun();
+            gameover();
+            context.clearRect(0,0,canvas.width,canvas.height)
+            paddle.update();
+            ball.update();
+            block.creat();
+            window.requestAnimationFrame(loop);
+        };
+        loop();
+        document.addEventListener("keydown",(e)=>{
+            context.clearRect(0,0,canvas.width,canvas.height)
+            if(e.key==="ArrowLeft"& paddle.x>0　){
+                paddle.x-=paddle.dx;
+            };
+            if(e.key==="ArrowRight"& paddle.x<canvas.width-paddle.width){
+                paddle.x+=paddle.dx;
+            };
+            if(e.key==="ArrowUp" & paddle.y>0　){
+                paddle.y-=paddle.dy;
+            };
+            if(e.key==="ArrowDown"& paddle.y<canvas.height-paddle.height){
+                paddle.y+=paddle.dy;
+            };
+        });
+    
+    </script>
+    </body>
+</html>
