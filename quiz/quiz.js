@@ -7,7 +7,7 @@ const quiz=[
     {
     question:"壱門は何歳でしょうか？",
     answers:["0歳","1歳","2歳","年齢の概念がない妖精"],
-    correct:"0歳"
+    correct:"1歳"
     },
     {
     question:"まっこーの本名は？",
@@ -66,5 +66,3 @@ const clickHandler=(quizeindex)=>{
     };
 };
 clickHandler(0);
-console.log(quizeindex);
-

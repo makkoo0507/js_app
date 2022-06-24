@@ -16,13 +16,13 @@ for(let i=1;i<=12;i++){
 };
 
 const opt=document.getElementsByClassName("mon")
-opt[8-1].setAttribute("selected","")
+opt[6-1].setAttribute("selected","")
 const yea=document.getElementsByClassName("yea")
-yea[2021-1].setAttribute("selected","")
+yea[2022-1].setAttribute("selected","")
 
 // カレンダー初期設定
-let year =2021;
-let month = 8-1 ;
+let year =2022;
+let month = 6-1 ;
 let manthcal=[];
 const yearlabel=document.getElementById("year-name")
 const monthlabel=document.getElementById("month-name")
@@ -75,12 +75,15 @@ const removetable =()=>{
 };
 
 // 日曜日赤色
-const tdtagu = document.getElementsByTagName("td")
-for(let i=0;i<tdtagu.length;i++){
-    if(i%7===0){
-        tdtagu[i].style.backgroundColor="red"
-    }
-};
+const colerRed = ()=>{
+    let tdtagu = document.getElementsByTagName("td");
+    for(let i=0;i<tdtagu.length;i++){
+        if(i%7===0){
+            tdtagu[i].style.backgroundColor="red"
+        }
+    };
+}
+colerRed();
 
 // 年ラベル変更
 yearinput.addEventListener("change",()=>{
@@ -88,7 +91,7 @@ yearinput.addEventListener("change",()=>{
     add_manthcal();
     removetable();
     createtable();
-
+    colerRed();
 });
 
 // 月ラベル変更
@@ -97,6 +100,7 @@ monthinput.addEventListener("change",()=>{
     add_manthcal();
     removetable();
     createtable();
+    colerRed();
 });
 
 // タイマー
@@ -123,11 +127,9 @@ if(today.getDate()>=26){
     pasMonth = today.getMonth() - birthday.getMonth()-1
 }
 if(pasMonth < 0){
-    pasMonth +=12 
+    pasMonth +=12
 }
 const Year=document.getElementById('year')
 Year.textContent=Math.floor(pasYear)
 const Month=document.getElementById('month')
 Month.textContent=Math.floor(pasMonth)
-
-

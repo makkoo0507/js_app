@@ -1,98 +1,97 @@
 <!DOCTYPE html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Caculator</title>
-      <link rel="stylesheet" href="caculator-stylesheet.css">
-      <link rel="stylesheet" href="ExanpleShop_responsive.css">
-      <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
-    </head>
-    <body>        
-        <h1>計算機アプリ</h1>
-        <div id="result-wrapper">
-            <input type="text" id="result" class="result" readonly>
-            <button id="clear" class="btn">C</button>
-        </div>
-        <table id="btn-table">
-            <tr>
-                <td><button id="number-7" class="btn numberkey">7</button></td>
-                <td><button id="number-8" class="btn numberkey">8</button></td>
-                <td><button id="number-9" class="btn numberkey">9</button></td>
-                <td><button id="calc-1" class="btn calc" value="/">÷</button></td>
-            </tr>
-            <tr>
-                <td><button id="number-4" class="btn numberkey">4</button></td>
-                <td><button id="number-5" class="btn numberkey">5</button></td>
-                <td><button id="number-6" class="btn numberkey">6</button></td>
-                <td><button id="calc-2" class="btn calc" value="*">×</button></td>
-            </tr>
-            <tr>
-                <td><button id="number-1" class="btn numberkey">1</button></td>
-                <td><button id="number-2" class="btn numberkey">2</button></td>
-                <td><button id="number-3" class="btn numberkey">3</button></td>
-                <td><button id="calc-3" class="btn calc" value="-">-</button></td>
-            </tr>
-            <tr>
-                <td><button id="number-0" class="btn numberkey">0</button></td>
-                <td><button id="calc-4" class="btn calc" value="+">+</button></td>
-                <td><button id="point" class="btn point" value=".">.</button></td>
-                <td><button id="calc-=" class="btn calc" value="=">=</button></td>
-            </tr>
-        </table>
-    <script>
-        
-       
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Caculator</title>
+    <link rel="stylesheet" href="caculator-stylesheet.css">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+</head>
+
+<body style="padding: 20px;">
+    <h1>計算機アプリ</h1>
+    <div id="result-wrapper">
+        <input type="text" id="result" class="result" readonly>
+        <button id="clear" class="btn">C</button>
+    </div>
+    <table id="btn-table">
+        <tr>
+            <td><button id="number-7" class="btn numberkey">7</button></td>
+            <td><button id="number-8" class="btn numberkey">8</button></td>
+            <td><button id="number-9" class="btn numberkey">9</button></td>
+            <td><button id="calc-1" class="btn calc" value="/">÷</button></td>
+        </tr>
+        <tr>
+            <td><button id="number-4" class="btn numberkey">4</button></td>
+            <td><button id="number-5" class="btn numberkey">5</button></td>
+            <td><button id="number-6" class="btn numberkey">6</button></td>
+            <td><button id="calc-2" class="btn calc" value="*">×</button></td>
+        </tr>
+        <tr>
+            <td><button id="number-1" class="btn numberkey">1</button></td>
+            <td><button id="number-2" class="btn numberkey">2</button></td>
+            <td><button id="number-3" class="btn numberkey">3</button></td>
+            <td><button id="calc-3" class="btn calc" value="-">-</button></td>
+        </tr>
+        <tr>
+            <td><button id="number-0" class="btn numberkey">0</button></td>
+            <td><button id="calc-4" class="btn calc" value="+">+</button></td>
+            <td><button id="point" class="btn point" value=".">.</button></td>
+            <td><button id="calc-=" class="btn calc" value="=">=</button></td>
+        </tr>
+    </table>
+
+    <script>
         // 計算バックグラウンド
         // 初期値
-        let myinput="";
-        let mytotal=0;
-        let mycalc="-";
-        const number=[];
-        const calcs =[];
+        let myinput = "";
+        let mytotal = 0;
+        let mycalc = "-";
+        const number = [];
+        const calcs = [];
         const result = document.getElementById("result")
-        result.value="" // アウトプットラベル
-        let calccunt=0
+        result.value = "" // アウトプットラベル
+        let calccunt = 0
 
         // １〜９をクリック
-        const numberkey_click=()=>{
-            for(let i=0;i<10;i++){
-                number[i]=document.getElementById(`number-${i}`)
-                
-                number[i].addEventListener("click",()=>{
-                myinput+=number[i].textContent
-                result.value=myinput
-                console.log(myinput)
-                console.log(mytotal)
-                console.log(mycalc)
+        const numberkey_click = () => {
+            for (let i = 0; i < 10; i++) {
+                number[i] = document.getElementById(`number-${i}`)
+
+                number[i].addEventListener("click", () => {
+                    myinput += number[i].textContent
+                    result.value = myinput
+                    console.log(myinput)
+                    console.log(mytotal)
+                    console.log(mycalc)
                 });
             };
         };
         numberkey_click();
 
         // 演算キークリック 1/ 2* 3- 4+ 5.
-        const calc_click=()=>{
-            for(let i=1;i<=4;i++){
-                calcs[i]=document.getElementById(`calc-${i}`);
-                calcs[i].addEventListener("click",()=>{
+        const calc_click = () => {
+            for (let i = 1; i <= 4; i++) {
+                calcs[i] = document.getElementById(`calc-${i}`);
+                calcs[i].addEventListener("click", () => {
                     // 演算一回め
-                    if(calccunt===0){
-                        result.value=eval(myinput)
-                        mycalc=calcs[i].value;
-                        mytotal=myinput+mycalc
-                        myinput=""
-                        calccunt+=1
+                    if (calccunt === 0) {
+                        result.value = eval(myinput)
+                        mycalc = calcs[i].value;
+                        mytotal = myinput + mycalc
+                        myinput = ""
+                        calccunt += 1
                         console.log(myinput)
                         console.log(mytotal)
                         console.log(mycalc)
-                    }else{
-                        mytotal+=myinput
-                        mytotal=eval(mytotal)
-                        result.value=eval(mytotal)
-                        mycalc=calcs[i].value;
-                        mytotal+=mycalc
-                        myinput=""
-                        calccunt+=1
+                    } else {
+                        mytotal += myinput
+                        mytotal = eval(mytotal)
+                        result.value = eval(mytotal)
+                        mycalc = calcs[i].value;
+                        mytotal += mycalc
+                        myinput = ""
+                        calccunt += 1
                         console.log(myinput)
                         console.log(mytotal)
                         console.log(mycalc)
@@ -103,16 +102,16 @@
         calc_click();
 
         // イコールをクリック
-        const equal_click=()=>{
-            const equal=document.getElementById("calc-=");
-            equal.addEventListener("click",()=>{
-                mytotal+=myinput
-                result.value=eval(mytotal)
+        const equal_click = () => {
+            const equal = document.getElementById("calc-=");
+            equal.addEventListener("click", () => {
+                mytotal += myinput
+                result.value = eval(mytotal)
                 console.log(eval(mytotal))
-                myinput="";
-                mytotal=0;
-                mycalc="-";
-                calccunt=0;
+                myinput = "";
+                mytotal = 0;
+                mycalc = "-";
+                calccunt = 0;
                 console.log(myinput)
                 console.log(mytotal)
                 console.log(mycalc)
@@ -120,23 +119,23 @@
         };
         equal_click();
         // クリアをクリック
-        const clear_click=()=>{
-            const clear=document.getElementById("clear")
-            clear.addEventListener("click",()=>{
-                myinput="";
-                mytotal=0;
-                mycalc="-";
-                result.value=""
+        const clear_click = () => {
+            const clear = document.getElementById("clear")
+            clear.addEventListener("click", () => {
+                myinput = "";
+                mytotal = 0;
+                mycalc = "-";
+                result.value = ""
             });
         };
         clear_click()
         // 点をクリック
-        const point_click=()=>{
-            const point=document.getElementById("point")
-            point.addEventListener("click",()=>{
-                if(myinput!==""){
-                    myinput+=point.value;
-                    result.value=myinput
+        const point_click = () => {
+            const point = document.getElementById("point")
+            point.addEventListener("click", () => {
+                if (myinput !== "") {
+                    myinput += point.value;
+                    result.value = myinput
                     console.log(myinput)
                     console.log(mytotal)
                     console.log(mycalc)
@@ -144,9 +143,9 @@
             });
         };
         point_click();
-
     </script>
 
 
-    </body>
+</body>
+
 </html>

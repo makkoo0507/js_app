@@ -1,44 +1,53 @@
 <!DOCTYPE html>
-<head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>数当てゲーム</title>
-      <link rel="stylesheet" href="numberguess.css">
-      <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
-    </head>
-    <body>        
-        <div>
-            <h1>数当てゲーむ</h1>
-            <p>数当てゲームをしましょう！<br>
-                今から私が1~100で一つの数字（正解ナンバー）を用意します。あなたにはその数字を当ててもらいます。
-                あなたには<span id='challenge-times'></span>回の回答権があります。<br>
-                その間に正解ナンバーを当てることができればあなたの勝利です。
-                もし正解ナンバーと違う場合はその数字が正解ナンバーと比べて大きいか小さいかを教えます。<br>
-                では、スタートです！
-            </p>
-            <label>私が予想する正解ナンバーは<input type='text' id='Predict_input' class='predict_input'>です。<button id = 'answer-btn'>answer</button></label>
-            <p id='preview'>予想のプレビュー:</p>
-            <p id='judg'></p>
-            <p id='hint'></p>
-            <button id='clear'>Clear</button>
-        </div>
-        <style>
-            #challenge-times{
-                font-size: 25px;
-                margin: 0 10px;
-            }
-            #preview{
-                color: blue;
-                background-color: #f5f5f5;
-            }
-            #judg{
-                font-size: large;
-                margin-left: 30px;
-            }
-        </style>
 
-    <script src="numberguess.js"></script>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>数当てゲーム</title>
+  <link rel="stylesheet" href="numberguess.css">
+  <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>数当てゲーむ</h1>
+    <p>数当てゲームをしましょう！<br>
+      今から私が1~100で一つの数字（正解ナンバー）を用意します。あなたにはその数字を当ててもらいます。
+      あなたには<span id='challenge-times'></span>回の回答権があります。<br>
+      その間に正解ナンバーを当てることができればあなたの勝利です。
+      もし正解ナンバーと違う場合はその数字が正解ナンバーと比べて大きいか小さいかを教えます。<br>
+      では、スタートです！
+    </p>
+    <label>私が予想する正解ナンバーは<input type='text' id='Predict_input' class='predict_input'>です。<button
+        id='answer-btn'>answer</button></label>
+    <p id='preview'>予想のプレビュー:</p>
+    <p id='judg'></p>
+    <p id='hint'></p>
+    <button id='clear'>Clear</button>
+  </div>
+  <style>
+    .wrapper{
+      padding: 20px;
+    }
+    #challenge-times {
+      font-size: 25px;
+      margin: 0 10px;
+    }
+
+    #preview {
+      color: blue;
+      background-color: #f5f5f5;
+    }
+
+    #judg {
+      font-size: large;
+      margin-left: 30px;
+    }
+  </style>
+
+  <script src="numberguess.js"></script>
+</body>
+
 </html>
 
 <!-- <!DOCTYPE html>
